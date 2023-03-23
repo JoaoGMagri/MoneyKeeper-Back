@@ -8,6 +8,14 @@ async function findUsersbyEmail(email: string){
     });
 }
 
+async function findSessionbyId(userId: number){
+    return prisma.session.findFirst({
+        where: { 
+            id: userId 
+        },
+    });
+}
+
 async function createUser(email:string, password:string, username:string){
     return prisma.user.create({
         data: {
@@ -18,9 +26,20 @@ async function createUser(email:string, password:string, username:string){
     })
 }
 
+async function createSession(token:string, userId:number) {
+    return prisma.session.create({
+        data: {
+            token:token,
+            userId:userId
+        }
+    })
+}
+
 const sessionRepository = {
     findUsersbyEmail,
-    createUser
+    findSessionbyId,
+    createUser,
+    createSession
 }
 
 export default sessionRepository;

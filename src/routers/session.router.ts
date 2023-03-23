@@ -1,10 +1,10 @@
-import { usersPost } from "../controllers/session-controller";
+import { userSession, usersPost } from "../controllers/session-controller";
 import { Router } from "express";
 
 const sessionRouter = Router();
 
 sessionRouter
-    .post("/", )
+    .post("", userSession)
     .post("/signUp", usersPost);
 
 export { sessionRouter };
