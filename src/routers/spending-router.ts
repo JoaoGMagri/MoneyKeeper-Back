@@ -5,7 +5,7 @@ import { Router } from "express";
 const spendingRouter = Router();
 
 spendingRouter
-    .use("/*", authenticateToken)
+    .all("/*", authenticateToken)
     .get("", getSpending)
     .post("", postSpending)
     .delete("/:spendingId", deleteSpending)

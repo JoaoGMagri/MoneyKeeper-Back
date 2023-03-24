@@ -25,7 +25,7 @@ async function findSessionbyId(userId: number){
 }
 
 async function findSessionbyToken(token: string){
-    return prisma.sessions.findFirst({
+    return prisma.sessions.findUnique({
         where: {
             token: token
         },

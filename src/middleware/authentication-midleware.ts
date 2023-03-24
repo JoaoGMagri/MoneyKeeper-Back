@@ -10,7 +10,6 @@ export async function authenticateToken(req: AuthenticatedRequest, res: Response
     const token = authorization?.replace('Bearer ', '');
 
     try {
-
         const userSession = await sessionRepository.findSessionbyToken(token);
         if (!userSession) {
             return generateUnauthorizedResponse(res);
