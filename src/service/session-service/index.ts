@@ -25,7 +25,7 @@ async function usersSession(email:string, password: string) {
         throw notFoundError();
     }
 
-    const passwordOK = bcrypt.compare(password, user.password);
+    const passwordOK = await bcrypt.compare(password, user.password);
     if (!passwordOK) {
         throw unauthorizedError();
     }

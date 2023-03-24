@@ -10,21 +10,38 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Users {
   id         Int          @id @default(autoincrement())
   username   String
   email      String       @unique @db.VarChar(255)
   password   String       @db.VarChar(255)
   createdAt  DateTime     @default(now())
   updatedAt  DateTime     @updatedAt
-  Session    Session[]
+  Sessions   Sessions[]
+  Spendings  Spendings[]
 }
 
-model Session {
+model Sessions {
   id        Int      @id @default(autoincrement())
   userId    Int
-  User      User     @relation(fields: [userId], references: [id])
+  Users     Users     @relation(fields: [userId], references: [id])
   token     String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Spendings {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  Users     Users     @relation(fields: [userId], references: [id])
+  name      String
+  value     Decimal
+  type      TypeSpendings
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum TypeSpendings {
+  INPUT
+  OUTPUT
 }
