@@ -14,8 +14,14 @@ export type InformationUser = {
 }
 
 //
-export type typeUserId = {
+export type TypeUserId = {
     userId: number;
 }
 
-export type AuthenticatedRequest = Request & typeUserId;
+export type AuthenticatedRequest = Request & TypeUserId;
+
+export type NewSpending = {
+    name: string;
+    value: number;
+    type: "INPUT" | "OUTPUT";
+}
