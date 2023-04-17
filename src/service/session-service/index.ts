@@ -12,7 +12,8 @@ async function usersPost(infoUser:InformationUser) {
     if (repetEmail){
         throw duplicatedEmailError();
     }
-
+    
+    
     const hashedPassword = await bcrypt.hash(infoUser.password, 12);
     return await sessionRepository.createUser(infoUser.email, hashedPassword, infoUser.username);
 }

@@ -1,11 +1,7 @@
 import { prisma } from "../../config/database";
 
 async function findUsersbyEmail(email: string){
-    return prisma.users.findFirst({
-        where: { 
-            email: email 
-        },
-    });
+    return prisma?.users.findFirst({where: { email: email },})
 }
 
 async function findUsersbyId(userId: number){
@@ -33,11 +29,11 @@ async function findSessionbyToken(token: string){
 }
 
 async function createUser(email:string, password:string, username:string){
-    return prisma.users.create({
+    return prisma?.users.create({
         data: {
-            email:email,
-            password:password,
-            username:username
+            email: email,
+            password: password,
+            username: username
         }
     })
 }
